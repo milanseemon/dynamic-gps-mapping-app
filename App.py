@@ -36,30 +36,31 @@ lottie_plotting = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_
 
 # Sample images for slideshow (you can replace these with your own)
 slideshow_images = [
-    "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1608264588597-7c3495aa7a04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1608264588597-7c3495aa7a04?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
 ]
 
 # Custom CSS for styling
 st.markdown("""
 <style>
     .main-header {
-        font-size: 3.5rem;
+        font-size: 4rem;
         color: #2E86AB;
         text-align: center;
-        margin-bottom: 0.5rem;
-        font-weight: 700;
+        margin-bottom: 0.2rem;
+        font-weight: 800;
+        padding: 0;
     }
     .sub-header {
-        font-size: 1.8rem;
+        font-size: 2rem;
         color: #A23B72;
         text-align: center;
-        margin-bottom: 2rem;
-        font-weight: 500;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
     }
     .developer-name {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         color: #F18F01;
         text-align: center;
         margin-bottom: 2rem;
@@ -67,24 +68,27 @@ st.markdown("""
         font-weight: 600;
     }
     .info-box {
-        background-color: #F8F9FA;
-        padding: 25px;
-        border-radius: 15px;
-        margin-bottom: 25px;
-        border-left: 6px solid #2E86AB;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #FFFFFF;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border: 2px solid #2E86AB;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #333333;
     }
     .info-box h4 {
         color: #2E86AB;
         margin-bottom: 15px;
+        font-size: 1.4rem;
+    }
+    .info-box ul {
+        color: #333333;
+    }
+    .info-box p {
+        color: #333333;
     }
     .stProgress > div > div > div > div {
         background-color: #2E86AB;
-    }
-    .css-1v0mbdj {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
     }
     .stButton>button {
         background-color: #2E86AB;
@@ -92,7 +96,7 @@ st.markdown("""
         border: none;
         padding: 12px 28px;
         border-radius: 8px;
-        margin: 8px;
+        margin: 8px 0;
         width: 100%;
         font-weight: 600;
         transition: all 0.3s ease;
@@ -127,15 +131,12 @@ st.markdown("""
         margin: 15px 0px;
         color: #C62828;
     }
-    .sidebar .sidebar-content {
-        background-color: #F8F9FA;
-    }
     .image-slideshow {
-        border-radius: 15px;
+        border-radius: 12px;
         overflow: hidden;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        height: 250px;
+        height: 200px;
     }
     .image-slideshow img {
         width: 100%;
@@ -150,29 +151,27 @@ st.markdown("""
         border-radius: 10px;
         margin-bottom: 20px;
     }
+    .section-header {
+        font-size: 1.8rem;
+        color: #2E86AB;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
 </style>
 """, unsafe_allow_html=True)
 
 # Header section
-st.markdown('<p class="main-header">🌍 GPS Data Visualization Tool</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-header">🌍 GPS DATA VISUALIZATION TOOL</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Advanced Mapping and Data Analysis Platform</p>', unsafe_allow_html=True)
 st.markdown('<p class="developer-name">Developed by Milan Seemon</p>', unsafe_allow_html=True)
 
-# Image slideshow
+# Image slideshow with reduced spacing
 st.markdown("### 📸 Application Preview")
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.markdown('<div class="image-slideshow">', unsafe_allow_html=True)
-    st.image(slideshow_images[0], use_column_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-with col2:
-    st.markdown('<div class="image-slideshow">', unsafe_allow_html=True)
-    st.image(slideshow_images[1], use_column_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-with col3:
-    st.markdown('<div class="image-slideshow">', unsafe_allow_html=True)
-    st.image(slideshow_images[2], use_column_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+cols = st.columns(3)
+for i, col in enumerate(cols):
+    with col:
+        st.markdown(f'<div class="image-slideshow"><img src="{slideshow_images[i]}" alt="Preview {i+1}"></div>', unsafe_allow_html=True)
 
 # Sidebar for additional information
 with st.sidebar:
@@ -180,12 +179,12 @@ with st.sidebar:
     st.info("""
     1. Upload your dataset (Excel or CSV format)
     2. Ensure your file contains columns named **'latitude'** and **'longitude'** for map visualization
-    3. Select variables for grouping/analysis
+    3. Select variables for grouping or labeling
     4. Generate visualizations and download results
     """)
     
     if lottie_map:
-        st_lottie(lottie_map, height=200, key="map_animation")
+        st_lottie(lottie_map, height=180, key="map_animation")
     
     st.markdown("---")
     st.markdown("### 📊 Data Sample Format")
@@ -284,11 +283,24 @@ if uploaded_file:
             </div>
             """, unsafe_allow_html=True)
         
-        group_vars = st.multiselect(
-            "**Select variable(s) for grouping or analysis**", 
-            options=df.columns.tolist(),
-            help="Select one or more columns to group your data by"
-        )
+        # Selection options
+        st.markdown("### 🔧 Visualization Options")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            group_vars = st.multiselect(
+                "**Select grouping variables (optional)**", 
+                options=df.columns.tolist(),
+                help="Select columns to group your data by (creates multiple maps)"
+            )
+        
+        with col2:
+            label_vars = st.multiselect(
+                "**Select labeling variables**", 
+                options=df.columns.tolist(),
+                help="Select columns to display when clicking on map points"
+            )
         
         visualize_map = False
         if lat_col and lon_col:
@@ -300,11 +312,11 @@ if uploaded_file:
         status_text.empty()
         
         if st.button("🚀 Generate Visualization", use_container_width=True):
-            if len(group_vars) == 0:
+            if not label_vars and not group_vars:
                 st.markdown("""
                 <div class="error-message">
                     <h4>❌ Selection Required</h4>
-                    <p>Please select at least one variable for grouping or analysis.</p>
+                    <p>Please select at least one labeling variable or grouping variable.</p>
                 </div>
                 """, unsafe_allow_html=True)
             else:
@@ -334,22 +346,57 @@ if uploaded_file:
                         if lottie_plotting:
                             st_lottie(lottie_plotting, height=200, key="plotting")
                         
-                        # Use first grouping variable for map creation
-                        group_var = group_vars[0]
-                        unique_groups = df_clean[group_var].unique()
-                        
                         map_files = {}
                         progress_bar = st.progress(0)
                         
-                        for i, grp in enumerate(unique_groups):
-                            df_grp = df_clean[df_clean[group_var] == grp]
-                            if df_grp.empty:
-                                continue
+                        # Determine if we're creating a single map or multiple grouped maps
+                        if group_vars:
+                            # Use first grouping variable for map creation
+                            group_var = group_vars[0]
+                            unique_groups = df_clean[group_var].unique()
                             
-                            center = [df_grp[lat_col].median(), df_grp[lon_col].median()]
+                            for i, grp in enumerate(unique_groups):
+                                df_grp = df_clean[df_clean[group_var] == grp]
+                                if df_grp.empty:
+                                    continue
+                                
+                                center = [df_grp[lat_col].median(), df_grp[lon_col].median()]
+                                m = folium.Map(location=center, zoom_start=12)
+                                
+                                for _, row in df_grp.iterrows():
+                                    # Create popup text with all label variables
+                                    popup_text = "<br>".join([f"<b>{var}:</b> {row[var]}" for var in label_vars]) if label_vars else f"{group_var}: {row[group_var]}"
+                                    
+                                    folium.CircleMarker(
+                                        location=[row[lat_col], row[lon_col]],
+                                        radius=5,
+                                        color='#2E86AB',
+                                        fill=True,
+                                        fill_color='#2E86AB',
+                                        fill_opacity=0.7,
+                                        popup=popup_text
+                                    ).add_to(m)
+                                
+                                # Add group name to map
+                                title_html = f'''
+                                    <h3 align="center" style="font-size:16px"><b>{group_var}: {grp}</b></h3>
+                                    '''
+                                m.get_root().html.add_child(folium.Element(title_html))
+                                
+                                safe_name = "".join(c if c.isalnum() else "_" for c in str(grp))
+                                html_str = m.get_root().render()
+                                map_files[f"{safe_name}_map.html"] = html_str
+                                
+                                progress_bar.progress((i + 1) / len(unique_groups))
+                        else:
+                            # Create a single map with all points
+                            center = [df_clean[lat_col].median(), df_clean[lon_col].median()]
                             m = folium.Map(location=center, zoom_start=12)
                             
-                            for _, row in df_grp.iterrows():
+                            for _, row in df_clean.iterrows():
+                                # Create popup text with all label variables
+                                popup_text = "<br>".join([f"<b>{var}:</b> {row[var]}" for var in label_vars]) if label_vars else "Location"
+                                
                                 folium.CircleMarker(
                                     location=[row[lat_col], row[lon_col]],
                                     radius=5,
@@ -357,20 +404,18 @@ if uploaded_file:
                                     fill=True,
                                     fill_color='#2E86AB',
                                     fill_opacity=0.7,
-                                    popup=f"{group_var}: {row[group_var]}"
+                                    popup=popup_text
                                 ).add_to(m)
                             
-                            # Add group name to map
-                            title_html = f'''
-                                <h3 align="center" style="font-size:16px"><b>{group_var}: {grp}</b></h3>
+                            # Add title to map
+                            title_html = '''
+                                <h3 align="center" style="font-size:16px"><b>All Locations</b></h3>
                                 '''
                             m.get_root().html.add_child(folium.Element(title_html))
                             
-                            safe_name = "".join(c if c.isalnum() else "_" for c in str(grp))
                             html_str = m.get_root().render()
-                            map_files[f"{safe_name}_map.html"] = html_str
-                            
-                            progress_bar.progress((i + 1) / len(unique_groups))
+                            map_files["all_locations_map.html"] = html_str
+                            progress_bar.progress(100)
                         
                         status_text.text("📦 Finalizing download package...")
                         
@@ -387,7 +432,7 @@ if uploaded_file:
                         st.markdown(f"""
                         <div class="success-message">
                             <h4>✅ Successfully Generated {len(map_files)} Map(s)</h4>
-                            <p>Maps created for groups based on '{group_var}'. Click below to download.</p>
+                            <p>{'Maps created for groups' if group_vars else 'Single map created'} with {len(label_vars)} labeling variables.</p>
                         </div>
                         """, unsafe_allow_html=True)
                         
@@ -402,20 +447,21 @@ if uploaded_file:
                         # Show sample map
                         if map_files:
                             sample_key = list(map_files.keys())[0]
-                            st.markdown("### 🗺️ Sample Map Preview")
+                            st.markdown("### 🗺️ Map Preview")
                             st.components.v1.html(map_files[sample_key], height=400)
                 else:
                     status_text.text("📊 Generating summary...")
                     st.markdown("""
                     <div class="warning-message">
                         <h4>📊 Data Summary</h4>
-                        <p>Map visualization skipped or unavailable. Showing grouping summary instead.</p>
+                        <p>Map visualization skipped or unavailable. Showing data summary instead.</p>
                     </div>
                     """, unsafe_allow_html=True)
                     
-                    summary = df[group_vars].drop_duplicates()
-                    st.write("**Unique combinations:**")
-                    st.dataframe(summary)
+                    if group_vars:
+                        summary = df[group_vars].drop_duplicates()
+                        st.write("**Unique combinations:**")
+                        st.dataframe(summary)
                     
                     # Show basic statistics if numerical columns exist
                     numeric_cols = df.select_dtypes(include=['number']).columns
