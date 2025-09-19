@@ -227,7 +227,7 @@ with st.sidebar:
     <div class="contact-info">
         <h4>💡 Suggestions Welcome!</h4>
         <p>We're continuously improving this tool. Share your ideas and feedback:</p>
-        <p><strong>milan.seemon@example.com</strong></p>
+        <p><strong>milanseemon0912@gmail.com</strong></p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -520,6 +520,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
