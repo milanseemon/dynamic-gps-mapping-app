@@ -215,7 +215,7 @@ with st.sidebar:
     st.markdown("### 📊 Data Sample Format")
     sample_data = pd.DataFrame({
         'latitude': [40.7128, 34.0522, 41.8781],
-        'longitude': [-74.0060, -118.2437, -87.6298],
+        'longitude': [74.0060, 118.2437, 87.6298],
         'category': ['A', 'B', 'A'],
         'value': [10, 20, 15]
     })
@@ -520,6 +520,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
