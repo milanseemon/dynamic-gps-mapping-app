@@ -169,7 +169,7 @@ st.markdown("""
         font-weight: bold;
     }
     .contact-info {
-        background-color: #E3F2FD;
+        background-color: #2E86AB;
         padding: 15px;
         border-radius: 10px;
         text-align: center;
@@ -509,13 +509,15 @@ if uploaded_file:
 # Footer with enhanced contact information
 st.markdown("---")
 st.markdown("""
-<div style="text-align: center;">
+<div style="text-align: center; max-width: 600px; margin: auto;">
     <p>Developed with ❤️ by <strong>Milan Seemon</strong></p>
     <div class="contact-info">
         <h4>📧 Contact & Suggestions</h4>
         <p>This tool is continuously evolving. We welcome your feedback and suggestions for new features!</p>
-        <p><strong>Email: milan.seemon@example.com</strong></p>
+        <p>Email: <a href="mailto:milanseemon0912@gmail.com">milanseemon0912@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/milanseemon/" target="_blank" rel="noopener noreferrer">linkedin.com/in/milanseemon</a></p>
         <p>Data Analysis Module - <strong>In Development</strong> - Coming Soon!</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
