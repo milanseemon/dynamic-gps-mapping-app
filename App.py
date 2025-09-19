@@ -36,9 +36,9 @@ lottie_plotting = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_
 
 # Sample images for slideshow (you can replace these with your own)
 slideshow_images = [
-    "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
 ]
 
 # Custom CSS for styling
@@ -479,4 +479,5 @@ st.markdown("""
     <p>For support or questions, please contact: milan.seemon@example.com</p>
 </div>
 """, unsafe_allow_html=True)
+
 
