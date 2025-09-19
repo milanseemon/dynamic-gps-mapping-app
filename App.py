@@ -34,11 +34,11 @@ lottie_loading = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_r
 lottie_map = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_kyOW06.json")
 lottie_plotting = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_ot6erjsc.json")
 
-# More specific tool-related images
+# Sample images for slideshow - GPS, Mapping, and Data Analysis focused
 slideshow_images = [
-    "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",  # Map with markers
-    "https://images.unsplash.com/photo-1565623833373-2943124f5964?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",  # Data plotting
-    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"   # Data analysis dashboard
+    "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",  # GPS and mapping
+    "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",  # Data visualization
+    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"   # Data analysis
 ]
 
 # Custom CSS for styling
@@ -520,6 +520,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
