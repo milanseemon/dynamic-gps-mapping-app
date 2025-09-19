@@ -515,10 +515,11 @@ st.markdown("""
         <h4>📧 Contact & Suggestions</h4>
         <p>This tool is continuously evolving. We welcome your feedback and suggestions for new features!</p>
         <p>Email: <a href="mailto:milanseemon0912@gmail.com">milanseemon0912@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/milanseemon/" target="_blank" rel="noopener noreferrer">linkedin.com/in/milanseemon</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/milanseemon-ms/" target="_blank" rel="noopener noreferrer">linkedin.com/in/milanseemon-ms/</a></p>
         <p>Data Analysis Module - <strong>In Development</strong> - Coming Soon!</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
