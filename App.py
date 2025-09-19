@@ -9,6 +9,7 @@ import base64
 from streamlit_lottie import st_lottie
 import json
 import requests
+import random
 
 # Set page configuration
 st.set_page_config(
@@ -20,46 +21,65 @@ st.set_page_config(
 
 # Function to load Lottie animation
 def load_lottieurl(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
+    try:
+        r = requests.get(url)
+        if r.status_code != 200:
+            return None
+        return r.json()
+    except:
         return None
-    return r.json()
 
 # Load animations
 lottie_loading = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_raiw2hpe.json")
 lottie_map = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_kyOW06.json")
+lottie_plotting = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_ot6erjsc.json")
+
+# Sample images for slideshow (you can replace these with your own)
+slideshow_images = [
+    "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://images.unsplash.com/photo-1608264588597-7c3495aa7a04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+]
 
 # Custom CSS for styling
 st.markdown("""
 <style>
     .main-header {
-        font-size: 3rem;
-        color: #1E88E5;
+        font-size: 3.5rem;
+        color: #2E86AB;
         text-align: center;
         margin-bottom: 0.5rem;
+        font-weight: 700;
     }
     .sub-header {
-        font-size: 1.5rem;
-        color: #0D47A1;
+        font-size: 1.8rem;
+        color: #A23B72;
         text-align: center;
         margin-bottom: 2rem;
+        font-weight: 500;
     }
     .developer-name {
-        font-size: 1.2rem;
-        color: #546E7A;
+        font-size: 1.4rem;
+        color: #F18F01;
         text-align: center;
         margin-bottom: 2rem;
         font-style: italic;
+        font-weight: 600;
     }
     .info-box {
-        background-color: #E3F2FD;
-        padding: 20px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        border-left: 5px solid #1E88E5;
+        background-color: #F8F9FA;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+        border-left: 6px solid #2E86AB;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .info-box h4 {
+        color: #2E86AB;
+        margin-bottom: 15px;
     }
     .stProgress > div > div > div > div {
-        background-color: #1E88E5;
+        background-color: #2E86AB;
     }
     .css-1v0mbdj {
         display: block;
@@ -67,44 +87,97 @@ st.markdown("""
         margin-right: auto;
     }
     .stButton>button {
-        background-color: #1E88E5;
+        background-color: #2E86AB;
         color: white;
         border: none;
-        padding: 10px 24px;
-        border-radius: 5px;
-        margin: 5px;
+        padding: 12px 28px;
+        border-radius: 8px;
+        margin: 8px;
         width: 100%;
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
     .stButton>button:hover {
-        background-color: #0D47A1;
+        background-color: #1B5E80;
         color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .success-message {
-        padding: 15px;
+        padding: 20px;
         background-color: #E8F5E9;
-        border-radius: 5px;
-        border-left: 5px solid #4CAF50;
-        margin: 10px 0px;
+        border-radius: 10px;
+        border-left: 6px solid #4CAF50;
+        margin: 15px 0px;
+        color: #2E7D32;
     }
     .warning-message {
-        padding: 15px;
-        background-color: #FFF8E1;
-        border-radius: 5px;
-        border-left: 5px solid #FFC107;
-        margin: 10px 0px;
+        padding: 20px;
+        background-color: #FFF3E0;
+        border-radius: 10px;
+        border-left: 6px solid #FF9800;
+        margin: 15px 0px;
+        color: #EF6C00;
+    }
+    .error-message {
+        padding: 20px;
+        background-color: #FFEBEE;
+        border-radius: 10px;
+        border-left: 6px solid #F44336;
+        margin: 15px 0px;
+        color: #C62828;
+    }
+    .sidebar .sidebar-content {
+        background-color: #F8F9FA;
+    }
+    .image-slideshow {
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        height: 250px;
+    }
+    .image-slideshow img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #2E86AB;
+    }
+    .stExpander {
+        border: 1px solid #E0E0E0;
+        border-radius: 10px;
+        margin-bottom: 20px;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Header section
-st.markdown('<p class="main-header">Flexible GPS & Data Visualization Tool</p>', unsafe_allow_html=True)
+st.markdown('<p class="main-header">🌍 GPS Data Visualization Tool</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Advanced Mapping and Data Analysis Platform</p>', unsafe_allow_html=True)
 st.markdown('<p class="developer-name">Developed by Milan Seemon</p>', unsafe_allow_html=True)
 
+# Image slideshow
+st.markdown("### 📸 Application Preview")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.markdown('<div class="image-slideshow">', unsafe_allow_html=True)
+    st.image(slideshow_images[0], use_column_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+with col2:
+    st.markdown('<div class="image-slideshow">', unsafe_allow_html=True)
+    st.image(slideshow_images[1], use_column_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+with col3:
+    st.markdown('<div class="image-slideshow">', unsafe_allow_html=True)
+    st.image(slideshow_images[2], use_column_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
 # Sidebar for additional information
 with st.sidebar:
+    st.markdown("### ℹ️ Instructions:")
     st.info("""
-    ### Instructions:
     1. Upload your dataset (Excel or CSV format)
     2. Ensure your file contains columns named **'latitude'** and **'longitude'** for map visualization
     3. Select variables for grouping/analysis
@@ -113,6 +186,16 @@ with st.sidebar:
     
     if lottie_map:
         st_lottie(lottie_map, height=200, key="map_animation")
+    
+    st.markdown("---")
+    st.markdown("### 📊 Data Sample Format")
+    sample_data = pd.DataFrame({
+        'latitude': [40.7128, 34.0522, 41.8781],
+        'longitude': [-74.0060, -118.2437, -87.6298],
+        'category': ['A', 'B', 'A'],
+        'value': [10, 20, 15]
+    })
+    st.dataframe(sample_data, use_container_width=True)
 
 # Main content
 st.markdown("""
@@ -124,10 +207,11 @@ st.markdown("""
         <li>Numerical values in coordinate columns</li>
         <li>Clean data with minimal missing values</li>
     </ul>
+    <p>Your file header should include <strong>latitude</strong> and <strong>longitude</strong> for map visualization.</p>
 </div>
 """, unsafe_allow_html=True)
 
-uploaded_file = st.file_uploader("**Upload your Excel or CSV file**", type=["xlsx", "csv"])
+uploaded_file = st.file_uploader("**Upload your Excel or CSV file**", type=["xlsx", "csv"], help="Supported formats: Excel (.xlsx) or CSV (.csv)")
 
 if uploaded_file:
     # Show loading animation
@@ -137,30 +221,48 @@ if uploaded_file:
         
         # Progress bar
         progress_bar = st.progress(0)
+        status_text = st.empty()
         
         # Load data
+        status_text.text("📂 Reading uploaded file...")
         progress_bar.progress(20)
         time.sleep(0.5)
         
-        if uploaded_file.name.endswith('xlsx'):
-            df = pd.read_excel(uploaded_file, dtype=str)
-        else:
-            df = pd.read_csv(uploaded_file, dtype=str)
+        try:
+            if uploaded_file.name.endswith('xlsx'):
+                df = pd.read_excel(uploaded_file, dtype=str)
+            else:
+                df = pd.read_csv(uploaded_file, dtype=str)
+        except Exception as e:
+            st.markdown(f"""
+            <div class="error-message">
+                <h4>❌ Error Reading File</h4>
+                <p>There was an error reading your file: {str(e)}</p>
+                <p>Please ensure you've uploaded a valid Excel or CSV file.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            st.stop()
         
         progress_bar.progress(50)
         time.sleep(0.5)
         
-        st.success(f"✅ File successfully uploaded! Found {len(df)} rows and {len(df.columns)} columns.")
+        st.markdown(f"""
+        <div class="success-message">
+            <h4>✅ File Successfully Uploaded!</h4>
+            <p>Found {len(df)} rows and {len(df.columns)} columns.</p>
+        </div>
+        """, unsafe_allow_html=True)
         
         # Display data preview
-        with st.expander("Preview Data"):
-            st.dataframe(df.head())
+        with st.expander("🔍 Preview Data", expanded=True):
+            st.dataframe(df.head(10))
         
+        status_text.text("🔍 Analyzing data structure...")
         progress_bar.progress(70)
         
         # Detect latitude and longitude columns (case insensitive)
-        lat_col = next((col for col in df.columns if 'latitude' in col.lower()), None)
-        lon_col = next((col for col in df.columns if 'longitude' in col.lower()), None)
+        lat_col = next((col for col in df.columns if 'latitude' in col.lower() or 'lat' in col.lower()), None)
+        lon_col = next((col for col in df.columns if 'longitude' in col.lower() or 'lon' in col.lower() or 'lng' in col.lower()), None)
         
         progress_bar.progress(90)
         
@@ -173,27 +275,45 @@ if uploaded_file:
                 <p>Available columns: {}</p>
             </div>
             """.format(", ".join(df.columns.tolist())), unsafe_allow_html=True)
+        else:
+            st.markdown(f"""
+            <div class="success-message">
+                <h4>✅ GPS Coordinates Detected</h4>
+                <p>Found latitude column: <strong>{lat_col}</strong></p>
+                <p>Found longitude column: <strong>{lon_col}</strong></p>
+            </div>
+            """, unsafe_allow_html=True)
         
-        group_vars = st.multiselect("**Select variable(s) for grouping or analysis**", options=df.columns.tolist())
+        group_vars = st.multiselect(
+            "**Select variable(s) for grouping or analysis**", 
+            options=df.columns.tolist(),
+            help="Select one or more columns to group your data by"
+        )
         
         visualize_map = False
         if lat_col and lon_col:
-            visualize_map = st.checkbox("Visualize map using GPS coordinates", value=True)
+            visualize_map = st.checkbox("🗺️ Visualize map using GPS coordinates", value=True)
         
         progress_bar.progress(100)
         time.sleep(0.5)
         progress_bar.empty()
+        status_text.empty()
         
         if st.button("🚀 Generate Visualization", use_container_width=True):
             if len(group_vars) == 0:
-                st.error("Please select at least one variable for grouping or analysis.")
+                st.markdown("""
+                <div class="error-message">
+                    <h4>❌ Selection Required</h4>
+                    <p>Please select at least one variable for grouping or analysis.</p>
+                </div>
+                """, unsafe_allow_html=True)
             else:
                 # Create a status container
                 status_text = st.empty()
                 
                 # If map visualization requested and GPS coordinates are detected
                 if visualize_map and lat_col and lon_col:
-                    status_text.text("Cleaning coordinate data...")
+                    status_text.text("🧹 Cleaning coordinate data...")
                     
                     # Clean coordinates
                     df[lat_col] = pd.to_numeric(df[lat_col], errors='coerce')
@@ -201,9 +321,18 @@ if uploaded_file:
                     df_clean = df.dropna(subset=[lat_col, lon_col])
                     
                     if df_clean.empty:
-                        st.error("No valid coordinates found after cleaning. Please check your data.")
+                        st.markdown("""
+                        <div class="error-message">
+                            <h4>❌ No Valid Coordinates</h4>
+                            <p>No valid coordinates found after cleaning. Please check your data.</p>
+                        </div>
+                        """, unsafe_allow_html=True)
                     else:
-                        status_text.text("Creating maps...")
+                        status_text.text("🗺️ Creating maps...")
+                        
+                        # Show plotting animation
+                        if lottie_plotting:
+                            st_lottie(lottie_plotting, height=200, key="plotting")
                         
                         # Use first grouping variable for map creation
                         group_var = group_vars[0]
@@ -224,9 +353,9 @@ if uploaded_file:
                                 folium.CircleMarker(
                                     location=[row[lat_col], row[lon_col]],
                                     radius=5,
-                                    color='#1E88E5',
+                                    color='#2E86AB',
                                     fill=True,
-                                    fill_color='#1E88E5',
+                                    fill_color='#2E86AB',
                                     fill_opacity=0.7,
                                     popup=f"{group_var}: {row[group_var]}"
                                 ).add_to(m)
@@ -243,7 +372,7 @@ if uploaded_file:
                             
                             progress_bar.progress((i + 1) / len(unique_groups))
                         
-                        status_text.text("Finalizing download package...")
+                        status_text.text("📦 Finalizing download package...")
                         
                         # Package maps as ZIP for download
                         zip_buffer = io.BytesIO()
@@ -269,8 +398,14 @@ if uploaded_file:
                             mime="application/zip",
                             use_container_width=True
                         )
+                        
+                        # Show sample map
+                        if map_files:
+                            sample_key = list(map_files.keys())[0]
+                            st.markdown("### 🗺️ Sample Map Preview")
+                            st.components.v1.html(map_files[sample_key], height=400)
                 else:
-                    status_text.text("Generating summary...")
+                    status_text.text("📊 Generating summary...")
                     st.markdown("""
                     <div class="warning-message">
                         <h4>📊 Data Summary</h4>
