@@ -34,30 +34,31 @@ lottie_loading = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_r
 lottie_map = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_kyOW06.json")
 lottie_plotting = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_ot6erjsc.json")
 
-# Sample images for slideshow (you can replace these with your own)
+# Sample images for slideshow (updated third image)
 slideshow_images = [
-    "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
-    "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    "https://images.unsplash.com/photo-1589519160732-57fc498494f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
 ]
 
 # Custom CSS for styling
 st.markdown("""
 <style>
     .main-header {
-        font-size: 4rem;
+        font-size: 4.5rem;
         color: #2E86AB;
         text-align: center;
         margin-bottom: 0.2rem;
-        font-weight: 800;
+        font-weight: 900;
         padding: 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
     .sub-header {
-        font-size: 2rem;
+        font-size: 2.2rem;
         color: #A23B72;
         text-align: center;
         margin-bottom: 1.5rem;
-        font-weight: 600;
+        font-weight: 700;
     }
     .developer-name {
         font-size: 1.5rem;
@@ -158,6 +159,22 @@ st.markdown("""
         margin-bottom: 1rem;
         font-weight: 600;
     }
+    .coming-soon {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 20px 0;
+        font-weight: bold;
+    }
+    .contact-info {
+        background-color: #E3F2FD;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 15px 0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -165,6 +182,14 @@ st.markdown("""
 st.markdown('<p class="main-header">🌍 GPS DATA VISUALIZATION TOOL</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Advanced Mapping and Data Analysis Platform</p>', unsafe_allow_html=True)
 st.markdown('<p class="developer-name">Developed by Milan Seemon</p>', unsafe_allow_html=True)
+
+# Coming soon notice for analysis features
+st.markdown("""
+<div class="coming-soon">
+    <h3>🚀 Coming Soon: Advanced Data Analysis Interface</h3>
+    <p>We're working on adding powerful analytical capabilities including clustering, heatmaps, route optimization, and statistical analysis!</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Image slideshow with reduced spacing
 st.markdown("### 📸 Application Preview")
@@ -195,6 +220,16 @@ with st.sidebar:
         'value': [10, 20, 15]
     })
     st.dataframe(sample_data, use_container_width=True)
+    
+    # Contact information in sidebar
+    st.markdown("---")
+    st.markdown("""
+    <div class="contact-info">
+        <h4>💡 Suggestions Welcome!</h4>
+        <p>We're continuously improving this tool. Share your ideas and feedback:</p>
+        <p><strong>milan.seemon@example.com</strong></p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Main content
 st.markdown("""
@@ -471,14 +506,16 @@ if uploaded_file:
                     
                     status_text.empty()
 
-# Footer
+# Footer with enhanced contact information
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center;">
     <p>Developed with ❤️ by <strong>Milan Seemon</strong></p>
-    <p>For support or questions, please contact: milan.seemon@example.com</p>
+    <div class="contact-info">
+        <h4>📧 Contact & Suggestions</h4>
+        <p>This tool is continuously evolving. We welcome your feedback and suggestions for new features!</p>
+        <p><strong>Email: milan.seemon@example.com</strong></p>
+        <p>Data Analysis Module - <strong>In Development</strong> - Coming Soon!</p>
+    </div>
 </div>
 """, unsafe_allow_html=True)
-
-
-
