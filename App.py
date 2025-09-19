@@ -169,7 +169,7 @@ st.markdown("""
         font-weight: bold;
     }
     .contact-info {
-        background-color: #2E86AB;
+        background-color: #333333;
         padding: 15px;
         border-radius: 10px;
         text-align: center;
@@ -520,4 +520,5 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
