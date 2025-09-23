@@ -214,13 +214,19 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("### 📊 Data Sample Format")
+    
     sample_data = pd.DataFrame({
-        'latitude': [40.7128, 34.0522, 41.8781],
-        'longitude': [74.0060, 118.2437, 87.6298],
-        'category': ['A', 'B', 'A'],
-        'value': [10, 20, 15]
+    'city': ['Delhi', 'Mumbai', 'Bengaluru', 'Kolkata', 'Chennai', 'Jaipur'],
+    'state': ['Delhi', 'Maharashtra', 'Karnataka', 'West Bengal', 'Tamil Nadu', 'Rajasthan'],
+    'latitude': [28.6139, 19.0760, 12.9716, 22.5726, 13.0827, 26.9124],
+    'longitude': [77.2090, 72.8777, 77.5946, 88.3639, 80.2707, 75.7873],
+    'category': ['Metro', 'Metro', 'Metro', 'Metro', 'Metro', 'Tourist'],
+    'population_million': [30.3, 20.7, 12.7, 14.8, 11.2, 3.1],
+    'avg_temp_c': [25, 27, 23, 26, 29, 24]
     })
+    
     st.dataframe(sample_data, use_container_width=True)
+
     
     # Contact information in sidebar
     st.markdown("---")
@@ -521,6 +527,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
