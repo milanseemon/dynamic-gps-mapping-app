@@ -176,6 +176,13 @@ st.markdown("""
     margin: 15px 0;
     color: #ffffff;
     }
+    .contact-info a {
+    color: #ffffff !important;   /* White text for links */
+    text-decoration: underline;  /* Optional: underline for visibility */
+    }
+    .contact-info a:hover {
+    color: #FFD700 !important;   /* Gold highlight on hover */
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -527,6 +534,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
