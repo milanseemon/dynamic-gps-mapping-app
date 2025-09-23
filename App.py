@@ -169,11 +169,12 @@ st.markdown("""
         font-weight: bold;
     }
     .contact-info {
-        background-color: #333333;
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        margin: 15px 0;
+    background-color: #2E86AB;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px 0;
+    color: #ffffff;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -520,6 +521,7 @@ st.markdown("""
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
